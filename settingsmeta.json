@@ -8,7 +8,7 @@
                     {
                         "type": "label",
                         "value": "",
-                        "label": "You must connect to a Spotify Premium account to access music.  Provide your Spotify username/password and then Connect with the button below.<p/>"
+                        "label": "You must connect to a Spotify Premium account to access music.  Provide your Spotify username/password and then Connect with the button below.<p/>If you log in to Spotify using Facebook, your password will be your _Facebook_ password, but your username will be a Spotify device username. You can get your Spotify device username <a href=\"https://www.spotify.com/us/account/set-device-password/\">here</a>.<p/>"
                     },
                     {
                         "name": "user",
