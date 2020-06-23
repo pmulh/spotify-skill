@@ -70,7 +70,8 @@ class SpotifyNotAuthorizedError(Exception):
 
 
 # Platforms for which the skill should start the spotify player
-MANAGED_PLATFORMS = ['mycroft_mark_1', 'mycroft_mark_2pi']
+MANAGED_PLATFORMS = ['mycroft_mark_1', 'mycroft_mark_2pi',
+                     'mycroft_mark_2', 'picroft']
 # Return value definition indication nothing was found
 # (confidence None, data None)
 NOTHING_FOUND = (None, 0.0)
