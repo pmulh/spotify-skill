@@ -212,7 +212,8 @@ class SpotifySkill(CommonPlaySkill):
 
             time.sleep(3)  # give libreSpot time to start-up
             if self.process and self.process.poll() is not None:
-                self.log.error('librespot failed to start.')
+                self.log.error('librespot failed to start. '
+                               'Exit status: {}'.format(self.process.poll()))
                 # libreSpot shut down immediately.  Bad user/password?
                 if self.settings.get('user'):
                     self.librespot_failed = True
