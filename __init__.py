@@ -436,6 +436,8 @@ class SpotifySkill(CommonPlaySkill):
         if not data:
             confidence, data = self.specific_query(phrase, bonus)
             if not data:
+                phrase = re.sub(self.translate_regex('on_shuffle'), '', phrase,
+                                re.IGNORECASE)
                 confidence, data = self.generic_query(phrase, bonus)
 
         if data:
@@ -498,6 +500,15 @@ class SpotifySkill(CommonPlaySkill):
 
         Returns: Tuple with confidence and data or NOTHING_FOUND
         """
+        # Check for shuffle first
+        match = re.match(self.translate_regex('shuffle_play'), phrase,
+                         re.IGNORECASE)
+        if match:
+            self.log.info('match found for shuffle')
+            self.schedule_event(self.shuffle_on, 10, name='SpotifyShuffleOn')
+            phrase = match.groupdict()['query']
+            self.log.info('continuing with phrase {}: '.format(phrase))
+
         # Check if saved
         match = re.match(self.translate_regex('saved_songs'), phrase,
                          re.IGNORECASE)
@@ -525,6 +536,8 @@ class SpotifySkill(CommonPlaySkill):
         if match:
             artist = match.groupdict()['artist']
             return self.query_artist(artist, bonus)
+
+        # Check song
         match = re.match(self.translate_regex('song'), phrase,
                          re.IGNORECASE)
         if match:
